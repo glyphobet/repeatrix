@@ -3,9 +3,8 @@
 <head>
   <style>
     body {
-      background-image: url('vshift.png');
       background-position: center center;
-      background-size: 12.5%;
+      background-repeat: repeat-x repeat-y;
       color: white;
       font-family: Futura, sans;
     }
@@ -26,18 +25,51 @@
       document.body.style.backgroundSize = scale + '%';
       document.getElementById('display').innerText = scale.toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
     }
+
+    function handleFileSelect(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
+      var files = evt.dataTransfer.files;
+
+      var reader = new FileReader();
+
+      var f = files[0];
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          document.getElementById('slider').value = 15;
+          rescale();
+          document.body.style.backgroundSize = 'auto';
+          document.body.style.backgroundImage = 'url(' + e.target.result + ')';
+        };
+      })(f);
+
+      reader.readAsDataURL(f);
+    }
+
+    function handleDragOver(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
+      evt.dataTransfer.dropEffect = 'copy';
+    }
+
   </script>
 </head>
 <body>
   <center>
     <div>
       <span>
-        <input type="range" min="0" max="15" value="8" step="0.25" id="slider" onchange="rescale()">
+        <input type="range" min="0" max="15" value="15" step="0.25" id="slider" onchange="rescale()">
       </span>
     </div>
     <div>
-      <span id="display">12.5%</span>
+      <span id="display">100%</span>
     </div>
   </center>
-</body>
+  <script>
+    // Setup the dnd listeners.
+    var dropZone = document.getElementById('display');
+    dropZone.addEventListener('dragover', handleDragOver, false);
+    dropZone.addEventListener('drop', handleFileSelect, false);
+  </script>
 </body>
