@@ -68,7 +68,7 @@
       if (evt.dataTransfer.types && evt.dataTransfer.types.length) {
         for (var i = 0, t; t = evt.dataTransfer.types[i]; i++) {
           if (t == 'text/uri-list') {
-            document.location.hash = evt.dataTransfer.getData('URL'); // TODO right way to set hash?
+            document.location.hash = evt.dataTransfer.getData('URL');
             break;
           }
         }
