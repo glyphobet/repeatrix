@@ -6,14 +6,16 @@
       background-image: url('vshift.png');
       background-position: center center;
       background-size: 12.5%;
+      color: white;
+      font-family: Futura, sans;
+    }
+    div {
+      margin: 3em;
     }
     span {
       background-color: rgba(0,0,0,0.5);
       border-radius: 1em;
       padding: 1em;
-    }
-    input {
-      margin: 1em;
     }
   </style>
   <script>
@@ -22,15 +24,20 @@
       var val = slider.value;
       var scale = (100/(16 - val));
       document.body.style.backgroundSize = scale + '%';
-      slider.title = scale.toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
+      document.getElementById('display').innerText = scale.toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
     }
   </script>
 </head>
 <body>
   <center>
-    <span>
-      <input type="range" min="0" max="15" value="8" step="0.25" id="slider" onchange="rescale()" title="12.5%">
-    </span>
+    <div>
+      <span>
+        <input type="range" min="0" max="15" value="8" step="0.25" id="slider" onchange="rescale()">
+      </span>
+    </div>
+    <div>
+      <span id="display">12.5%</span>
+    </div>
   </center>
 </body>
 </body>
