@@ -34,15 +34,12 @@
       var reader = new FileReader();
 
       var f = files[0];
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-        return function(e) {
-          document.getElementById('slider').value = 15;
-          rescale();
-          document.body.style.backgroundSize = 'auto';
-          document.body.style.backgroundImage = 'url(' + e.target.result + ')';
-        };
-      })(f);
+      reader.onload = function(e) {
+        document.getElementById('slider').value = 15;
+        rescale();
+        document.body.style.backgroundSize = 'auto';
+        document.body.style.backgroundImage = 'url(' + e.target.result + ')';
+      };
 
       reader.readAsDataURL(f);
     }
