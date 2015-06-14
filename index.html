@@ -64,7 +64,11 @@
     }
 
     function onImageLoad() {
-        document.getElementById('help').remove();
+        try {
+          document.getElementById('help').remove();
+        } catch (err) {
+          // ignore already removed help
+        }
         var slider = document.getElementById('slider');
         slider.disabled = false;
         slider.focus();
