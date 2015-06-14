@@ -64,11 +64,7 @@
     }
 
     function onImageLoad() {
-        try {
-          document.getElementById('help').remove();
-        } catch (err) {
-          // ignore already removed help
-        }
+        document.getElementById('help').style.display = 'none';
         var slider = document.getElementById('slider');
         slider.disabled = false;
         slider.focus();
@@ -79,6 +75,8 @@
         var hashImage = document.location.hash.slice(1);
         document.body.style.backgroundImage = 'url(' + hashImage + ')';
         document.getElementById('image').src = hashImage;
+      } else {
+        document.getElementById('help').style.display = 'block';
       }
     }
 
