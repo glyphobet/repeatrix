@@ -35,9 +35,9 @@
         numerator /= 2;
       }
       document.body.style.backgroundSize = width * scale + 'px';
-      document.getElementById('percentage').innerText = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
-      document.getElementById('numerator').innerText = numerator;
-      document.getElementById('denominator').innerText = denominator;
+      document.getElementById('percentage').textContent = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+      document.getElementById('numerator'  ).textContent = numerator  ;
+      document.getElementById('denominator').textContent = denominator;
     }
 
     function setImage(imageURL) {
