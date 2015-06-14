@@ -68,7 +68,7 @@
       if (evt.dataTransfer.types && evt.dataTransfer.types.length) {
         for (var i = 0, t; t = evt.dataTransfer.types[i]; i++) {
           if (t == 'text/uri-list') {
-            document.location.hash = evt.dataTransfer.getData('URL');
+            document.location.hash = encodeURIComponent(evt.dataTransfer.getData('URL'));
             break;
           }
         }
@@ -108,7 +108,7 @@
 
     function onHashChange() {
       if (document.location.hash.slice(1)) {
-        setImage(document.location.hash.slice(1))
+        setImage(decodeURIComponent(document.location.hash.slice(1)));
       } else {
         document.getElementById('help').style.display = 'block';
       }
