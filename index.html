@@ -81,7 +81,7 @@
       }
     }
 
-    function handleDragOver(evt) {
+    function handleDrag(evt) {
       evt.stopPropagation();
       evt.preventDefault();
       evt.dataTransfer.dropEffect = 'none';
@@ -129,8 +129,8 @@
 
     function onPageLoad() {
       var dropZone = document.getElementsByTagName('html')[0];
-      dropZone.addEventListener('dragenter', handleDragOver, false);
-      dropZone.addEventListener('dragover', handleDragOver, false);
+      dropZone.addEventListener('dragenter', handleDrag, false);
+      dropZone.addEventListener('dragover' , handleDrag, false);
       dropZone.addEventListener('drop', handleDrop, false);
 
       document.getElementById('image').addEventListener('load', onImageLoad);
