@@ -34,7 +34,9 @@
         numerator /= 2;
       }
       document.body.style.backgroundSize = width * scale + 'px';
-      document.getElementById('percentage').innerHTML = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '% &bull; <sup>' + numerator + '</sup>/<sub>' + denominator + '</sub>';
+      document.getElementById('percentage').innerText = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+      document.getElementById('numerator').innerText = numerator;
+      document.getElementById('denominator').innerText = denominator;
     }
 
     function setImage(imageURL) {
@@ -117,7 +119,7 @@
       </span>
     </div>
     <div>
-      <span id="percentage">100% &bull; <sup>1</sup>/<sub>1</sub></span>
+      <span><a id="percentage">100</a>% &bull; <sup id="numerator">1</sup>/<sub id="denominator">1</sub></span>
     </div>
     <img id="image"/>
   </center>
