@@ -52,11 +52,10 @@
       evt.stopPropagation();
       evt.preventDefault();
 
-      var reader = new FileReader();
-
       if (evt.dataTransfer.files && evt.dataTransfer.files.length) {
         for (var i = 0, f; f = evt.dataTransfer.files[i]; i++) {
           if (f.type.match(/image.*/)) {
+            var reader = new FileReader();
             reader.onload = function(e) {
               document.location.hash = '';
               setImage(e.target.result);
