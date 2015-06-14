@@ -16,16 +16,19 @@
       border-radius: 1em;
       padding: 1em;
     }
+    #image {
+      display: none;
+    }
   </style>
   <script>
-    var width = 172; // TODO get this from the image upon upload
 
     function rescale() {
+      var width = document.getElementById('image').width;
       var slider = document.getElementById('slider');
       var val = slider.value;
-      var scale = (1/(16 - val));
+      var scale = 1/(16 - val);
       document.body.style.backgroundSize = width * scale + 'px';
-      document.getElementById('display').innerText = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
+      document.getElementById('percentage').innerText = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
     }
 
     function handleFileSelect(evt) {
@@ -39,6 +42,7 @@
       reader.onload = function(e) {
         document.getElementById('slider').value = 15;
         rescale();
+        document.getElementById('image').src = e.target.result;
         document.body.style.backgroundSize = 'auto';
         document.body.style.backgroundImage = 'url(' + e.target.result + ')';
       };
@@ -64,6 +68,7 @@
     <div>
       <span id="display">100%</span>
     </div>
+    <img id="image"/>
   </center>
   <script>
     // Setup the dnd listeners.
