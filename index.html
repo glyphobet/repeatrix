@@ -46,15 +46,12 @@
 
       var f = files[0];
       reader.onload = function(e) {
+        document.location.hash = '';
         document.getElementById('slider').value = 15;
         rescale();
-        document.getElementById('image').src = e.target.result;
         document.body.style.backgroundSize = 'auto';
         document.body.style.backgroundImage = 'url(' + e.target.result + ')';
-        document.getElementById('help').remove();
-        var slider = document.getElementById('slider');
-        slider.disabled = false;
-        slider.focus();
+        document.getElementById('image').src = e.target.result;
       };
 
       reader.readAsDataURL(f);
@@ -66,16 +63,30 @@
       evt.dataTransfer.dropEffect = 'link';
     }
 
-    function onload() {
+    function onImageLoad() {
+        document.getElementById('help').remove();
+        var slider = document.getElementById('slider');
+        slider.disabled = false;
+        slider.focus();
+    }
+
+    function onPageLoad() {
       var dropZone = document.getElementsByTagName('html')[0];
       dropZone.addEventListener('dragover', handleDragOver, false);
       dropZone.addEventListener('drop', handleFileSelect, false);
 
+      document.getElementById('image').addEventListener('load', onImageLoad);
       document.getElementById('slider').addEventListener('change', rescale);
+
+      if (document.location.hash.slice(1)) {
+        var hashImage = document.location.hash.slice(1);
+        document.body.style.backgroundImage = 'url(' + hashImage + ')';
+        document.getElementById('image').src = hashImage;
+      }
     }
   </script>
 </head>
-<body onload="onload()">
+<body onload="onPageLoad()">
   <center>
     <div id="help">
       <span>Drop any image here to try it as a background.</span>
