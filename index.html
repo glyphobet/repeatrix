@@ -67,7 +67,15 @@
     function handleDragOver(evt) {
       evt.stopPropagation();
       evt.preventDefault();
-      evt.dataTransfer.dropEffect = 'link';
+      evt.dataTransfer.dropEffect = 'none';
+      var files = evt.dataTransfer.files;
+
+      for (var i = 0, f; f = files[i]; i++) {
+        if (f.type.match(/image.*/)) {
+          evt.dataTransfer.dropEffect = 'link';
+          break;
+        }
+      }
     }
 
     function onImageLoad() {
