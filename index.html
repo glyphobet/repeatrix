@@ -78,11 +78,12 @@
       evt.stopPropagation();
       evt.preventDefault();
       evt.dataTransfer.dropEffect = 'none';
+      var successEffect = 'copy'; // Has to be copy, otherwise drop event never fires in Chrome 43
 
       if (evt.dataTransfer.files && evt.dataTransfer.files.length) {
         for (var i = 0, f; f = evt.dataTransfer.files[i]; i++) {
           if (f.type.match(/image.*/)) {
-            evt.dataTransfer.dropEffect = 'copy';
+            evt.dataTransfer.dropEffect = successEffect;
             break;
           }
         }
@@ -90,7 +91,7 @@
       if (evt.dataTransfer.types && evt.dataTransfer.types.length) {
         for (var i = 0, t; t = evt.dataTransfer.types[i]; i++) {
           if (t == 'Files' || t == 'text/uri-list') {
-            evt.dataTransfer.dropEffect = 'copy';
+            evt.dataTransfer.dropEffect = successEffect;
             break;
           }
         }
