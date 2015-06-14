@@ -18,12 +18,14 @@
     }
   </style>
   <script>
+    var width = 172; // TODO get this from the image upon upload
+
     function rescale() {
       var slider = document.getElementById('slider');
       var val = slider.value;
-      var scale = (100/(16 - val));
-      document.body.style.backgroundSize = scale + '%';
-      document.getElementById('display').innerText = scale.toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
+      var scale = (1/(16 - val));
+      document.body.style.backgroundSize = width * scale + 'px';
+      document.getElementById('display').innerText = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
     }
 
     function handleFileSelect(evt) {
