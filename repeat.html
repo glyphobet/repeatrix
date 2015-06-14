@@ -27,8 +27,15 @@
       var slider = document.getElementById('slider');
       var val = slider.value;
       var scale = 1/(16 - val);
+      var denominator = (4*(16 - val));
+      var numerator = 4;
+
+      while (denominator % 2 == 0 && numerator % 2 == 0) {
+        denominator /= 2;
+        numerator /= 2;
+      }
       document.body.style.backgroundSize = width * scale + 'px';
-      document.getElementById('percentage').innerText = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '%';
+      document.getElementById('percentage').innerHTML = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '% &bull; <sup>' + numerator + '</sup>/<sub>' + denominator + '</sub>';
     }
 
     function handleFileSelect(evt) {
@@ -75,7 +82,7 @@
       </span>
     </div>
     <div>
-      <span id="percentage">100%</span>
+      <span id="percentage">100% &bull; <sup>1</sup>/<sub>1</sub></span>
     </div>
     <img id="image"/>
   </center>
