@@ -51,7 +51,9 @@
         document.getElementById('image').src = e.target.result;
         document.body.style.backgroundSize = 'auto';
         document.body.style.backgroundImage = 'url(' + e.target.result + ')';
-        document.getElementById('slider').focus();
+        var slider = document.getElementById('slider');
+        slider.disabled = false;
+        slider.focus();
       };
 
       reader.readAsDataURL(f);
@@ -76,7 +78,7 @@
   <center>
     <div>
       <span>
-        <input type="range" min="0" max="15" value="15" step="0.25" id="slider">
+        <input type="range" min="0" max="15" value="15" step="0.25" id="slider" disabled>
       </span>
     </div>
     <div>
