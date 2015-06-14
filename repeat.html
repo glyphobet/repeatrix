@@ -45,6 +45,7 @@
         document.getElementById('image').src = e.target.result;
         document.body.style.backgroundSize = 'auto';
         document.body.style.backgroundImage = 'url(' + e.target.result + ')';
+        document.getElementById('slider').focus();
       };
 
       reader.readAsDataURL(f);
