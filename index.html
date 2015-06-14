@@ -20,6 +20,10 @@
     #image {
       display: none;
     }
+    input[type=range][orient=vertical] {
+      writing-mode: bt-lr; /* IE */
+      -webkit-appearance: slider-vertical; /* WebKit */
+    }
   </style>
   <script>
     function rescale() {
@@ -135,7 +139,7 @@
     </div>
     <div>
       <span>
-        <input type="range" min="0" max="15" value="15" step="0.25" id="slider" disabled>
+        <input type="range" min="0" max="15" value="15" step="0.25" id="slider" orient="vertical" disabled>
       </span>
     </div>
     <div>
