@@ -65,13 +65,6 @@
           }
         }
       }
-      if (evt.dataTransfer.items && evt.dataTransfer.items.length) {
-        for (var i = 0, u; u = evt.dataTransfer.items[i]; i++) {
-          if (u.type == 'text/uri-list') {
-            break;
-          }
-        }
-      }
       if (evt.dataTransfer.types && evt.dataTransfer.types.length) {
         for (var i = 0, t; t = evt.dataTransfer.types[i]; i++) {
           if (t == 'text/uri-list') {
@@ -89,14 +82,6 @@
       if (evt.dataTransfer.files && evt.dataTransfer.files.length) {
         for (var i = 0, f; f = evt.dataTransfer.files[i]; i++) {
           if (f.type.match(/image.*/)) {
-            evt.dataTransfer.dropEffect = 'copy';
-            break;
-          }
-        }
-      }
-      if (evt.dataTransfer.items && evt.dataTransfer.items.length) {
-        for (var i = 0, u; u = evt.dataTransfer.items[i]; i++) {
-          if (u.type == 'text/uri-list') {
             evt.dataTransfer.dropEffect = 'copy';
             break;
           }
