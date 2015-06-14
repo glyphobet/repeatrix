@@ -37,6 +37,14 @@
       document.getElementById('percentage').innerHTML = (100 * scale).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + '% &bull; <sup>' + numerator + '</sup>/<sub>' + denominator + '</sub>';
     }
 
+    function setImage(imageURL) {
+      document.getElementById('slider').value = 15;
+      rescale();
+      document.body.style.backgroundSize = 'auto';
+      document.body.style.backgroundImage = 'url(' + imageURL + ')';
+      document.getElementById('image').src = imageURL;
+    }
+
     function handleFileSelect(evt) {
       evt.stopPropagation();
       evt.preventDefault();
@@ -47,11 +55,7 @@
       var f = files[0];
       reader.onload = function(e) {
         document.location.hash = '';
-        document.getElementById('slider').value = 15;
-        rescale();
-        document.body.style.backgroundSize = 'auto';
-        document.body.style.backgroundImage = 'url(' + e.target.result + ')';
-        document.getElementById('image').src = e.target.result;
+        setImage(e.target.result);
       };
 
       reader.readAsDataURL(f);
@@ -72,9 +76,7 @@
 
     function onHashChange() {
       if (document.location.hash.slice(1)) {
-        var hashImage = document.location.hash.slice(1);
-        document.body.style.backgroundImage = 'url(' + hashImage + ')';
-        document.getElementById('image').src = hashImage;
+        setImage(document.location.hash.slice(1))
       } else {
         document.getElementById('help').style.display = 'block';
       }
