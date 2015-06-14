@@ -52,13 +52,16 @@
 
       var reader = new FileReader();
 
-      var f = files[0];
-      reader.onload = function(e) {
-        document.location.hash = '';
-        setImage(e.target.result);
-      };
-
-      reader.readAsDataURL(f);
+      for (var i = 0, f; f = files[i]; i++) {
+        if (f.type.match(/image.*/)) {
+          reader.onload = function(e) {
+            document.location.hash = '';
+            setImage(e.target.result);
+          };
+          reader.readAsDataURL(f);
+          break;
+        }
+      }
     }
 
     function handleDragOver(evt) {
