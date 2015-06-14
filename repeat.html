@@ -64,7 +64,7 @@
     }
 
     function onload() {
-      var dropZone = document.getElementById('percentage');
+      var dropZone = document.getElementsByTagName('html')[0];
       dropZone.addEventListener('dragover', handleDragOver, false);
       dropZone.addEventListener('drop', handleFileSelect, false);
 
