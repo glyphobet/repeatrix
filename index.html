@@ -31,13 +31,16 @@
     }
   </style>
   <script>
+    var max = 16;
+    var step = 4;
+
     function rescale() {
       var width = document.getElementById('image').width;
       var slider = document.getElementById('slider');
       var val = slider.value;
-      var scale = 1/(16 - val);
-      var denominator = (4*(16 - val));
-      var numerator = 4;
+      var scale = 1/(max - val);
+      var denominator = (step*(max - val));
+      var numerator = step;
 
       while (denominator % 2 == 0 && numerator % 2 == 0) {
         denominator /= 2;
@@ -50,7 +53,7 @@
     }
 
     function setImage(imageURL) {
-      document.getElementById('slider').value = 15;
+      document.getElementById('slider').value = max-1;
       rescale();
       document.body.style.backgroundSize = 'auto';
       document.body.style.backgroundImage = 'url(' + imageURL + ')';
@@ -130,7 +133,13 @@
       dropZone.addEventListener('drop', handleDrop, false);
 
       document.getElementById('image').addEventListener('load', onImageLoad);
-      document.getElementById('slider').addEventListener('change', rescale);
+
+      var slider = document.getElementById('slider');
+      slider.setAttribute('min', 0);
+      slider.setAttribute('max', max-1);
+      slider.setAttribute('value', max-1);
+      slider.setAttribute('step', 1/step);
+      slider.addEventListener('change', rescale);
 
       window.addEventListener('hashchange', onHashChange, false);
       onHashChange();
@@ -144,7 +153,7 @@
     </div>
     <div>
       <span>
-        <input type="range" min="0" max="15" value="15" step="0.25" id="slider" disabled>
+        <input type="range" id="slider" disabled>
       </span>
     </div>
     <div>
